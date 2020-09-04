@@ -1,0 +1,123 @@
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration build-checksum="3499307983" file="D:\Project\Auto-Radar\TIDA\auto-apps-tid-mrr-lvds\gui\MRRvisualization\mRR_Viz_1_4.prj" location="D:\Project\Auto-Radar\TIDA\auto-apps-tid-mrr-lvds\gui\MRRvisualization" name="mRR_Viz_1_4" preferred-package-location="D:\Project\Auto-Radar\TIDA\auto-apps-tid-mrr-lvds\gui\MRRvisualization\mRR_Viz_1_4\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>mRR_Viz_1_4</param.appname>
+    <param.icon />
+    <param.icons />
+    <param.version>1.4</param.version>
+    <param.authnamewatermark>RAP</param.authnamewatermark>
+    <param.email>TI</param.email>
+    <param.company>TI</param.company>
+    <param.summary>A visualizer for the MRR/SRR TI Design project</param.summary>
+    <param.description>With Y-Z plot, Some re-alignment of the legends, removal of record and reply</param.description>
+    <param.screenshot>C:\Users\a0132210\Downloads\Untitled Diagram (2).jpg</param.screenshot>
+    <param.guid />
+    <param.net.saved.interface />
+    <param.installpath.string>\TI\mRR_Viz_1_4\</param.installpath.string>
+    <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
+    <param.logo>${PROJECT_ROOT}\texas_instruments.gif</param.logo>
+    <param.install.notes />
+    <param.intermediate>${PROJECT_ROOT}\mRR_Viz_1_4\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\mRR_Viz_1_4\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\mRR_Viz_1_4\for_redistribution</param.output>
+    <param.enable.clean.build>false</param.enable.clean.build>
+    <param.user.defined.mcr.options />
+    <param.embed.ctf>true</param.embed.ctf>
+    <param.target.type>subtarget.standalone</param.target.type>
+    <param.support.packages />
+    <param.required.mcr.products>
+      <item>35000</item>
+      <item>35010</item>
+    </param.required.mcr.products>
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.windows.command.prompt>true</param.windows.command.prompt>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <unset>
+      <param.icon />
+      <param.icons />
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.guid />
+      <param.net.saved.interface />
+      <param.installpath.string />
+      <param.installpath.combo />
+      <param.intermediate />
+      <param.files.only />
+      <param.output />
+      <param.enable.clean.build />
+      <param.user.defined.mcr.options />
+      <param.embed.ctf />
+      <param.target.type />
+      <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
+      <param.no.mcr />
+      <param.web.mcr.name />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\srr_ti_design_visualization.m</file>
+    </fileset.main>
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\configureSport.m</file>
+      <file>${PROJECT_ROOT}\displayChirpParams.m</file>
+      <file>${PROJECT_ROOT}\generate_params_for_SRR.m</file>
+      <file>${PROJECT_ROOT}\gui_initializer.m</file>
+      <file>${PROJECT_ROOT}\load_config.m</file>
+      <file>${PROJECT_ROOT}\plotRectGrid.m</file>
+      <file>${PROJECT_ROOT}\plotSemiCircularGrid.m</file>
+      <file>${PROJECT_ROOT}\read_file_and_plot_object_location.m</file>
+      <file>${PROJECT_ROOT}\read_serial_port_and_plot_object_location.m</file>
+      <file>${PROJECT_ROOT}\read_serial_port_and_plot_object_location_with_serial_obd.m</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}\mRR_Viz_1_4\for_testing" name="splash.png" optional="false">D:\Project\Auto-Radar\TIDA\auto-apps-tid-mrr-lvds\gui\MRRvisualization\mRR_Viz_1_4\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\mRR_Viz_1_4\for_testing" name="mRR_Viz_1_4.exe" optional="false">D:\Project\Auto-Radar\TIDA\auto-apps-tid-mrr-lvds\gui\MRRvisualization\mRR_Viz_1_4\for_testing\mRR_Viz_1_4.exe</file>
+      <file location="${PROJECT_ROOT}\mRR_Viz_1_4\for_testing" name="readme.txt" optional="true">D:\Project\Auto-Radar\TIDA\auto-apps-tid-mrr-lvds\gui\MRRvisualization\mRR_Viz_1_4\for_testing\readme.txt</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files (x86)\MATLAB\R2015aSP1</root>
+      <toolboxes>
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabcoder" />
+      </toolboxes>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.2</osver>
+      <os32>true</os32>
+      <os64>false</os64>
+      <arch>win32</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

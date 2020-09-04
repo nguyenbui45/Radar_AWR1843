@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<projectSpec>
+    <project
+        name="mrr_18xx_mss"
+        deviceFamily="ARM"
+        isTargetManual="false"
+        device="Cortex R.AWR1843"
+		endianness="little"
+        cgtVersion="16.9.6.LTS"
+        connection="common/targetdb/connections/TIXDS110_Connection.xml"
+        toolChain="TI"
+        linkerCommandFile="mss_mrr_linker.cmd"
+        preannouncebuildStep="Deleting old BIN format image"
+        preBuildStep="rm -f ${PROJECT_ROOT}/${ProjName}.bin;"
+        postannouncebuildStep="Preparing BIN format image"
+        postBuildStep="${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/out2rprc/out2rprc.exe ${ProjName}.xer4f ${ProjName}.bin; ${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/multicore_image_generator/MulticoreImageGen.exe LE 37 0x00000008 xwr18xx_mrr_demo.bin 0x35510000 ${WORKSPACE_LOC}/mrr_18xx_mss/Debug/mrr_18xx_mss.bin 0xb5510000 ${COM_TI_MMWAVE_SDK_INSTALL_DIR}/firmware/radarss/xwr18xx_radarss_rprc.bin 0xd5510000 ${WORKSPACE_LOC}/mrr_18xx_dss/Debug/mrr_18xx_dss.bin;${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/crc_multicore_image/crc_multicore_image.exe xwr18xx_mrr_demo.bin xwr18xx_mrr_demo.bin.tmp;${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/append_bin_crc/gen_bincrc32.exe xwr18xx_mrr_demo.bin"
+        description="mrr_18xx Lab"
+        launchWizard="false"
+        configurations="Debug, Release"
+        compilerBuildOptions="
+        -mv7R4 --code_state=16 --float_support=VFPv3D16 --abi=eabi -me -O3
+        -I${PROJECT_ROOT}
+        -I${CG_TOOL_ROOT}/include
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages
+        -D${COM_TI_MMWAVE_SDK_SYMBOLS}
+		-D_LITTLE_ENDIAN
+        -DMMWAVE_L3RAM_NUM_BANK=8
+        -DMMWAVE_SHMEM_TCMA_NUM_BANK=0
+        -DMMWAVE_SHMEM_TCMB_NUM_BANK=0
+        -DMMWAVE_SHMEM_BANK_SIZE=0x20000
+        -D${BIOS_SYMBOLS}
+        -DSOC_XWR18XX
+        -DSUBSYS_MSS
+        -DDOWNLOAD_FROM_CCS
+		-DSHMEM_ALLOC=0x00000008
+	    -DDebugP_ASSERT_ENABLED	
+        -g --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --enum_type=int --c99 --abi=eabi"
+        linkerBuildOptions="
+        -m${ProjName}.map -o${ProjName}.xer4f		
+        -I${COM_TI_MMWAVE_SDK_LIBRARY_PATH}
+        -I${CG_TOOL_ROOT}/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/control/mmwave/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/control/mmwavelink/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/crc/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/esm/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/gpio/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/osal/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/pinmux/lib
+		-I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/mailbox/lib
+		-I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/dma/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/soc/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/uart/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/canfd/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/utils/cli/lib
+        -llibosal_xwr18xx.aer4f
+        -llibesm_xwr18xx.aer4f
+        -llibgpio_xwr18xx.aer4f
+        -llibsoc_xwr18xx.aer4f
+		-llibmailbox_xwr18xx.aer4f
+        -llibpinmux_xwr18xx.aer4f
+        -llibcrc_xwr18xx.aer4f
+		-llibDMA_xwr18xx.aer4f
+        -llibuart_xwr18xx.aer4f
+        -llibcanfd_xwr18xx.aer4f
+        -llibmmwavelink_xwr18xx.aer4f
+        -llibmmwave_xwr18xx.aer4f
+        -llibcli_xwr18xx.aer4f
+        --define=MMWAVE_L3RAM_SIZE=0x100000 --reread_libs --diag_warning=225 --diag_wrap=off --display_error_number --warn_sections --xml_link_info=${ProjName}.xml --rom_model --unused_section_elimination=on --disable_auto_rts -lrtsv7R4_T_le_v3D16_eabi.lib">
+
+        <!-- Project properties -->
+        <property name="type" value="rtsc"/>
+        <property name="products" value="com.ti.rtsc.SYSBIOS:6.73.1.01;com.ti.MMWAVE_SDK:3.2.0.04;"/>
+        <property name="xdcToolsVersion" value="3.50.08.24_core"/>
+        <property name="target" value="ti.targets.arm.elf.R4F"/>
+        <property name="platform" value="ti.platforms.cortexR:AWR16XX:false:200"/>
+        <property name="endianness" value="little"/>
+        <property name="output_format" value="elf"/>
+        <property name="buildProfile" value="release"/>
+        <property name="configuroOptions" value="--compileOptions &quot;--enum_type=int &quot; "/>
+    
+        <!-- Project files -->
+        <file path="mss/mss_main.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="mss/mss_mrr.cfg" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="mss/mss_mrr.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="mss/mss_mrr_cli.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="common/cfg.c" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" />  
+        <file path="common/mmw_messages.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="common/mrr_config_chirp_design_MRR80.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="common/mrr_config_chirp_design_MRR120.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="common/mrr_config_chirp_design_USRR20.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="common/mrr_config_chirp_design_USRR30.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="common/mrr_config_consts.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="common/mrr_defines.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="common/detected_obj.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="common/mrr_config.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="common/mrr_output.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" />
+        <file path="mss/mss_mrr_linker.cmd" openOnCreation="false" excludeFromBuild="false"/>
+		<file path="mss/r4f_linker.cmd" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+    </project>
+</projectSpec>

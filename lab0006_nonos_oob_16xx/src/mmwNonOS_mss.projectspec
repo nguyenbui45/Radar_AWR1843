@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<projectSpec>
+    <project
+        name="AWR16xx_mss_nonOS"
+        deviceFamily="ARM"
+        isTargetManual="false"
+        device="Cortex R.AWR1642"
+        cgtVersion="16.9.3.LTS"
+        endianness="little"
+        connection="common/targetdb/connections/TIXDS110_Connection.xml"
+        toolChain="TI"
+        linkerCommandFile="mss/mss_mmw_linker.cmd"
+        preannouncebuildStep="Deleting old BIN format image"
+        preBuildStep="rm -f ${PROJECT_ROOT}/xwr16xx_mmw_mss_nonOS.bin;"
+        postannouncebuildStep="Preparing BIN format image"
+        postBuildStep="${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/xwr16xx/out2rprc/out2rprc.exe xwr16xx_mmw_mss_nonOS.xer4f xwr16xx_mmw_mss_nonOS.bin;${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/xwr16xx/multicore_image_generator/MulticoreImageGen.exe LE 37 0x01000005 xwr16xx_mmw_nonOS.bin 0x35510000 xwr16xx_mmw_mss_nonOS.bin 0xb5510000 ${COM_TI_MMWAVE_SDK_INSTALL_DIR}/firmware/radarss/xwr16xx_radarss_rprc.bin 0xd5510000 ${WORKSPACE_LOC}/AWR16xx_dss_nonOS/Debug/xwr16xx_mmw_dss_nonOS.bin;${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/xwr16xx/crc_multicore_image/crc_multicore_image.exe xwr16xx_mmw_nonOS.bin xwr16xx_mmw_nonOS.bin.tmp; ${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/append_bin_crc/gen_bincrc32.exe xwr16xx_mmw_nonOS.bin;" 
+        description="mmw nonOS Lab"
+        launchWizard="false"
+        configurations="Debug, Release"
+        compilerBuildOptions="
+        -mv7R4 --code_state=16 --float_support=VFPv3D16 -me -O3
+        -I${PROJECT_ROOT}
+        -I${CG_TOOL_ROOT}/include
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages
+        -D${COM_TI_MMWAVE_SDK_SYMBOLS}
+        -D_LITTLE_ENDIAN
+        -D${BIOS_SYMBOLS}
+        -DSOC_XWR16XX
+        -DSUBSYS_MSS
+        -DDOWNLOAD_FROM_CCS
+        -DMMWAVE_L3RAM_SIZE=0xC0000
+        -DDebugP_ASSERT_ENABLED
+        -g --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --enum_type=int --c99 --abi=eabi"
+        linkerBuildOptions="
+        -mxwr16xx_mmw_mss_nonOS.map -oxwr16xx_mmw_mss_nonOS.xer4f
+        -I${COM_TI_MMWAVE_SDK_LIBRARY_PATH}
+        -I${CG_TOOL_ROOT}/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/control/mmwavelink/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/crc/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/esm/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/gpio/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/soc/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/pinmux/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/mailbox/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/dma/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/uart/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/utils/cli/lib
+        -I${PROJECT_LOC}/osal_nonos
+        -llibesm_xwr16xx.aer4f
+        -llibgpio_xwr16xx.aer4f
+        -llibsoc_xwr16xx.aer4f
+        -llibmailbox_xwr16xx.aer4f
+        -llibpinmux_xwr16xx.aer4f
+        -llibcrc_xwr16xx.aer4f
+        -llibDMA_xwr16xx.aer4f
+        -llibuart_xwr16xx.aer4f
+        -llibmmwavelink_xwr16xx.aer4f
+        -llibcli_xwr16xx.aer4f
+        --reread_libs --diag_warning=225 --diag_wrap=off --display_error_number --warn_sections --xml_link_info=xwr16xx_mmw_mss_nonOS_linkInfo.xml --rom_model --unused_section_elimination=on --disable_auto_rts -lrtsv7R4_T_le_v3D16_eabi.lib">
+
+        <!-- Project properties -->
+        <!-- <property name="type" value="rtsc"/> -->
+        <property name="products" value="com.ti.MMWAVE_SDK:2.0.0.04;"/>
+        <property name="xdcToolsVersion" value="3.50.4.43_core"/>
+        <property name="target" value="ti.targets.arm.elf.R4F"/>
+        <property name="platform" value="ti.platforms.cortexR:AWR16XX:false:200"/>
+        <property name="endianness" value="little"/>
+        <property name="output_format" value="elf"/>
+        <property name="buildProfile" value="release"/>
+        <property name="configuroOptions" value="--compileOptions &quot;--enum_type=int &quot; "/>
+        
+        <!-- Project files -->
+        <file path="mss/mss_main.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="mss/cli.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="mss/mss_mmw.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="mss/sys_intvecs.asm" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="mss/sys_startup.asm" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="common/mmw_messages.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/DebugP_nonos.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/HwiP_nonos.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/SemaphoreP_nonos.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/MemoryP_nonos.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/Event_nonos.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/Event_nonos.h" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/sys_vim.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/sys_vim.h" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/reg_vim.h" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+    </project>
+</projectSpec>

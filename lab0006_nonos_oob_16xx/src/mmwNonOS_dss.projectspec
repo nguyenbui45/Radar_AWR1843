@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<projectSpec>
+    <project
+        name="AWR16xx_dss_nonOS"
+        deviceFamily="C6000"
+        isTargetManual="false"
+        device="AWR1642"
+        cgtVersion="8.1.3"
+        connection="common/targetdb/connections/TIXDS110_Connection.xml"
+        toolChain="TI"
+        linkerCommandFile="dss/dss_mmw_linker.cmd"
+        preannouncebuildStep="Deleting old BIN format image"
+        preBuildStep="rm -f ${PROJECT_ROOT}/xwr16xx_mmw_dss_nonOS.bin;"
+        postannouncebuildStep="Preparing BIN format image"
+        postBuildStep="${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/xwr16xx/out2rprc/out2rprc.exe xwr16xx_mmw_dss_nonOS.xe674 xwr16xx_mmw_dss_nonOS.bin;" 
+        description="Non-OS mmw Demo dss"
+        launchWizard="false"
+        configurations="Debug, Release"
+        compilerBuildOptions="
+        -mv6740 -mo -O3 -ms0
+        -I${PROJECT_ROOT}
+        -I${CG_TOOL_ROOT}/include
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages
+        -I${TI_MATHLIB_BASE}/packages
+        -I${TI_DSPLIB_BASE}/packages/ti/dsplib/src/DSP_fft16x16/c64P
+        -I${TI_DSPLIB_BASE}/packages/ti/dsplib/src/DSP_fft32x32/c64P
+        -I${PROJECT_LOC}/osal_nonos
+        -DSOC_XWR16XX
+        -DSUBSYS_DSS
+        -DMMWAVE_L3RAM_SIZE=0xC0000
+        -DDOWNLOAD_FROM_CCS
+        -D_LITTLE_ENDIAN 
+        -DDebugP_ASSERT_ENABLED
+        --gcc -g --diag_warning=225 --diag_wrap=off  --preproc_with_compile --display_error_number --abi=eabi --disable_push_pop --obj_extension .oe674"
+        linkerBuildOptions="-mv6740 -g 
+        -mxwr16xx_mmw_dss_nonOS.map -oxwr16xx_mmw_dss_nonOS.xe674
+        -I${PROJECT_ROOT}
+        -I${CG_TOOL_ROOT}/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/control/mmwavelink/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/crc/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/mailbox/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/cbuff/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/soc/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/edma/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/adcbuf/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/alg/mmwavelib/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/utils/hsiheader/lib
+        -I${TI_DSPLIB_BASE}/packages/ti/dsplib/lib
+        -I${TI_MATHLIB_BASE}/packages/ti/mathlib/lib
+        -lmathlib.ae674
+        -ldsplib.ae64P
+        -llibsoc_xwr16xx.ae674
+        -llibcrc_xwr16xx.ae674
+        -llibmailbox_xwr16xx.ae674
+        -llibmmwavelink_xwr16xx.ae674
+        -llibedma_xwr16xx.ae674
+        -llibadcbuf_xwr16xx.ae674
+        -llibmmwavealg_xwr16xx.ae674
+        -llibhsiheader_xwr16xx.ae674
+        -llibcbuff_xwr16xx.ae674
+        --define=MMWAVE_L3RAM_SIZE=0xC0000
+        --define=SOC_XWR16XX
+        --reread_libs --diag_warning=225 --diag_wrap=off --display_error_number --warn_sections
+        --xml_link_info=xwr16xx_${ProjName}_linkInfo.xml --ram_model  -lrts6740_elf.lib">
+
+        <!-- Project properties -->
+        <!-- <property name="type" value="rtsc"/> -->
+        <property name="products" value="com.ti.MMWAVE_SDK:2.0.0.04"/>
+        <property name="xdcToolsVersion" value="3.50.4.43_core"/>
+        <property name="target" value="ti.targets.elf.C674"/>
+        <property name="platform" value="ti.platforms.c6x:AWR16XX:false:600"/>
+        <property name="endianness" value="little"/>
+        <property name="output_format" value="elf"/>
+        <property name="buildProfile" value="release"/>
+        <pathVariable name="TI_DSPLIB_BASE" path="C:/ti/dsplib_c64Px_3_4_0_0" scope="project"/>
+        <pathVariable name="TI_MATHLIB_BASE" path="C:/ti/mathlib_c674x_3_1_2_1" scope="project"/>
+
+
+        <!-- Project files -->
+        <file path="dss/dss_config_edma_util.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="dss/dss_data_path.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="dss/dss_main.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="dss/dss_mmw.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="dss/dss_config_edma_util.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/demo/utils/rx_ch_bias_measure.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/demo/utils/rx_ch_bias_measure.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="dss/dss_resources.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="dss/dss_data_path.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="dss/intvecs.asm" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="${TI_DSPLIB_BASE}/packages/ti/dsplib/src/DSP_fft16x16/c64P/gen_twiddle_fft16x16.c" openOnCreation="false" excludeFromBuild="false" />
+        <file path="${TI_DSPLIB_BASE}/packages/ti/dsplib/src/DSP_fft32x32/c64P/gen_twiddle_fft32x32.c" openOnCreation="false" excludeFromBuild="false" />
+        <file path="common/mmw_messages.h" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="common/mmw_link.c" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="common/osi_nonos.c" targetDirectory="common" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/DebugP_nonos.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/HwiP_nonos.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/SemaphoreP_nonos.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/MemoryP_nonos.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/Event_nonos.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/Event_nonos.h" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/interrupt.c" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/interrupt.h" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/hw_dspintc.h" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+        <file path="osal_nonos/soc_C6748.h" targetDirectory="osal_nonos" openOnCreation="false" excludeFromBuild="false" action="copy" /> 
+    </project>
+</projectSpec>

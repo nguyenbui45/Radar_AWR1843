@@ -1,0 +1,131 @@
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration build-checksum="3933184580" file="D:\ti\mmwave_sdk-MMWAVE_SDK_03_00_00_01\ti\demo\xwr18xx\srr\gui\SRRvisualization\srr_visualization.prj" location="D:\ti\mmwave_sdk-MMWAVE_SDK_03_00_00_01\ti\demo\xwr18xx\srr\gui\SRRvisualization" name="srr_visualization" preferred-package-location="D:\ti\mmwave_sdk-MMWAVE_SDK_03_00_00_01\ti\demo\xwr18xx\srr\gui\SRRvisualization\srr_visualization\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>srr_visualization</param.appname>
+    <param.icon />
+    <param.icons />
+    <param.version>1.2</param.version>
+    <param.authnamewatermark />
+    <param.email />
+    <param.company />
+    <param.summary>A visualizer for the MRR/SRR TI Design project</param.summary>
+    <param.description>With Y-Z plot</param.description>
+    <param.screenshot />
+    <param.guid />
+    <param.installpath.string>\srr_visualization\</param.installpath.string>
+    <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
+    <param.logo />
+    <param.install.notes />
+    <param.target.install.notes />
+    <param.intermediate>${PROJECT_ROOT}\srr_visualization\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\srr_visualization\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\srr_visualization\for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}\srr_visualization</param.logdir>
+    <param.enable.clean.build>false</param.enable.clean.build>
+    <param.user.defined.mcr.options />
+    <param.target.type>subtarget.standalone</param.target.type>
+    <param.support.packages />
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.windows.command.prompt>true</param.windows.command.prompt>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <param.native.matlab>false</param.native.matlab>
+    <param.checkbox>false</param.checkbox>
+    <param.example />
+    <param.help.text />
+    <unset>
+      <param.icon />
+      <param.icons />
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.screenshot />
+      <param.guid />
+      <param.installpath.string />
+      <param.installpath.combo />
+      <param.logo />
+      <param.target.install.notes />
+      <param.intermediate />
+      <param.files.only />
+      <param.output />
+      <param.logdir />
+      <param.enable.clean.build />
+      <param.user.defined.mcr.options />
+      <param.target.type />
+      <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
+      <param.no.mcr />
+      <param.web.mcr.name />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
+      <param.native.matlab />
+      <param.checkbox />
+      <param.example />
+      <param.help.text />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\srr_ti_design_visualization.m</file>
+    </fileset.main>
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\load_config.m</file>
+      <file>${PROJECT_ROOT}\read_serial_port_and_plot_object_location.m</file>
+    </fileset.resources>
+    <fileset.package />
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\configureSport.m</file>
+      <file>${PROJECT_ROOT}\displayChirpParams.m</file>
+      <file>${PROJECT_ROOT}\generate_params_for_SRR.m</file>
+      <file>${PROJECT_ROOT}\gui_initializer.m</file>
+      <file>${PROJECT_ROOT}\plotRectGrid.m</file>
+      <file>${PROJECT_ROOT}\plotSemiCircularGrid.m</file>
+      <file>${PROJECT_ROOT}\read_file_and_plot_object_location.m</file>
+      <file>${PROJECT_ROOT}\read_serial_port_and_plot_object_location_with_serial_obd.m</file>
+    </fileset.depfun>
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}\srr_visualization\for_testing" name="readme.txt" optional="true">D:\ti\mmwave_sdk-MMWAVE_SDK_03_00_00_01\ti\demo\xwr18xx\srr\gui\SRRvisualization\srr_visualization\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\srr_visualization\for_testing" name="srr_visualization.exe" optional="false">D:\ti\mmwave_sdk-MMWAVE_SDK_03_00_00_01\ti\demo\xwr18xx\srr\gui\SRRvisualization\srr_visualization\for_testing\srr_visualization.exe</file>
+      <file location="${PROJECT_ROOT}\srr_visualization\for_testing" name="splash.png" optional="false">D:\ti\mmwave_sdk-MMWAVE_SDK_03_00_00_01\ti\demo\xwr18xx\srr\gui\SRRvisualization\srr_visualization\for_testing\splash.png</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2017b</root>
+      <toolboxes>
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabcoder" />
+      </toolboxes>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

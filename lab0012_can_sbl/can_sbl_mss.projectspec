@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<projectSpec>
+    <project
+        name="can_sbl18xx_mss"
+        deviceFamily="ARM"
+        isTargetManual="false"
+        device="Cortex R.AWR1843"
+        endianness="little"
+        cgtVersion="16.9.6.LTS"
+        connection="common/targetdb/connections/TIXDS110_Connection.xml"
+        toolChain="TI"
+        linkerCommandFile="mss_can_sbl_linker.cmd"
+        preannouncebuildStep="Deleting old BIN format image"
+        preBuildStep="rm -f ${PROJECT_ROOT}/${ProjName}.bin;"
+        postannouncebuildStep="Preparing BIN format image"
+        postBuildStep="${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/out2rprc/out2rprc.exe ${WORKSPACE_LOC}/can_sbl18xx_mss/Debug/${ProjName}.xer4f ${WORKSPACE_LOC}/can_sbl18xx_mss/Debug/${ProjName}.bin; ${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/multicore_image_generator/MulticoreImageGen.exe LE 37 0x00000008 xwr18xx_sbl_demo.bin 0x35510000 ${WORKSPACE_LOC}/can_sbl18xx_mss/Debug/${ProjName}.bin    ;${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/crc_multicore_image/crc_multicore_image.exe xwr18xx_sbl_demo.bin xwr18xx_sbl_demo.bin.tmp;${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/scripts/ImageCreator/append_bin_crc/gen_bincrc32.exe xwr18xx_sbl_demo.bin"
+        description="can_sbl18xx Lab"
+        launchWizard="false"
+        configurations="Debug, Release"
+        compilerBuildOptions="
+        -mv7R4 --code_state=16 --float_support=VFPv3D16 --abi=eabi -me -O3
+        -I${PROJECT_ROOT}
+        -I${CG_TOOL_ROOT}/include
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages
+        -D${COM_TI_MMWAVE_SDK_SYMBOLS}
+        -D_LITTLE_ENDIAN
+        -DMMWAVE_L3RAM_NUM_BANK=8
+        -DMMWAVE_SHMEM_TCMA_NUM_BANK=0
+        -DMMWAVE_SHMEM_TCMB_NUM_BANK=0
+        -DMMWAVE_SHMEM_BANK_SIZE=0x20000
+        -D${BIOS_SYMBOLS}
+        -DSOC_XWR18XX
+        -DSUBSYS_MSS
+        -DDOWNLOAD_FROM_CCS
+        -DSHMEM_ALLOC=0x00000008
+        -DDebugP_ASSERT_ENABLED	
+        -g --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --enum_type=int --c99 --abi=eabi"
+        linkerBuildOptions="
+        -m${ProjName}.map -o${ProjName}.xer4f
+        -I${COM_TI_MMWAVE_SDK_LIBRARY_PATH}
+        -I${CG_TOOL_ROOT}/lib
+        -I${BIOS_CG_ROOT}/packages/ti/targets/arm/rtsarm/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/crc/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/esm/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/pinmux/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/dma/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/soc/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/uart/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/canfd/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/utils/cli/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/qspi/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/qspiflash/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/utils/testlogger/lib
+        -I${COM_TI_MMWAVE_SDK_INSTALL_DIR}/packages/ti/drivers/osal/lib
+        -llibesm_xwr18xx.aer4f
+        -llibosal_xwr18xx.aer4f
+        -llibsoc_xwr18xx.aer4f
+        -llibpinmux_xwr18xx.aer4f
+        -llibcrc_xwr18xx.aer4f
+        -llibdma_xwr18xx.aer4f
+        -llibuart_xwr18xx.aer4f
+        -llibcanfd_xwr18xx.aer4f
+        -llibcli_xwr18xx.aer4f
+        -llibqspiflash_xwr18xx.aer4f
+        -llibqspi_xwr18xx.aer4f
+        -llibtestlogger_xwr18xx.aer4f
+        -lboot.aer4ft
+        --define=MMWAVE_L3RAM_SIZE=0x100000 --reread_libs --diag_warning=225 --diag_wrap=off --display_error_number --warn_sections --xml_link_info=${ProjName}.xml --rom_model --unused_section_elimination=on --disable_auto_rts -lrtsv7R4_T_le_v3D16_eabi.lib">
+
+        <!-- Project properties -->
+        <property name="type" value="rtsc"/>
+        <property name="products" value="com.ti.rtsc.SYSBIOS:6.73.1.01;com.ti.MMWAVE_SDK:3.1.0.02;"/>
+        <property name="xdcToolsVersion" value="3.50.08.24_core"/>
+        <property name="target" value="ti.targets.arm.elf.R4F"/>
+        <property name="platform" value="ti.platforms.cortexR:AWR18XX:false:200"/>
+        <property name="endianness" value="little"/>
+        <property name="output_format" value="elf"/>
+        <property name="buildProfile" value="release"/>
+        <property name="configuroOptions" value="--compileOptions &quot;--enum_type=int &quot; "/>
+    
+        <!-- Project files -->
+        <file path="src\transport.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\buffer_mgmt.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\sbl.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\image_parser.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\image_validity.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\metaheader_parser.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\multicoreimage_parser.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\main.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\crc16.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\sbl.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\buffer_mgmt.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\crc16.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\image_parser.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\image_validity.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\metaheader_parser.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\sbl_error.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\sbl_internal.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\transport.h" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\sbl.cfg" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\sbl_xwr18xx.c" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\mss_can_sbl_linker.cmd" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+        <file path="src\r4f_linker.cmd" openOnCreation="false" excludeFromBuild="false" action="copy"/>
+    </project>
+</projectSpec>

@@ -1,0 +1,1 @@
+In this lab, the chirp configurations are hard coded in the code. Please read User's Guide for more information.

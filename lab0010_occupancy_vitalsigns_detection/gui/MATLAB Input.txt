@@ -1,0 +1,1 @@
+vod_vital_signs 3 4 ..\chirp_configs\vod_vital_signs_10fps.cfg 1 0
